@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { calculateMedian } from "./utils/helpers";
+import Chart from "./components/Chart";
 
 const date = new Date();
 const now = date.toISOString().split("T")[0];
@@ -6,22 +8,6 @@ date.setDate(date.getDate() - 30);
 const ago30 = date.toISOString().split("T")[0];
 
 const url = `https://api.frankfurter.app/${ago30}..${now}?amount=100&from=CAD&to=USD`;
-console.log("url", url);
-
-const calculateMedian = (ratesArr) => {
-  const rates = [...ratesArr];
-  if (!rates.length) return 0;
-
-  rates.sort((a, b) => a - b);
-
-  const middle = Math.floor(rates.length / 2);
-
-  if (middle % 2) {
-    return rates[middle];
-  }
-
-  return (rates[middle - 1] + rates[middle]) / 2;
-};
 
 function App() {
   const [ratesFor30days, setRates] = useState([]);
@@ -31,14 +17,23 @@ function App() {
       try {
         const res = await fetch(url);
         const { rates } = await res.json();
-        console.log("rates", rates);
+
         let result = [];
+        let data = [];
+
         for (const key in rates) {
+          const rate = {
+            date: new Date(key),
+            rate: rates[key].USD,
+          };
+
           result = [...result, rates[key].USD];
+          data = [...data, rate];
         }
+
         const median = calculateMedian(result);
-        setRates(result);
-        console.log("median", median);
+
+        setRates(data);
       } catch (e) {
         console.log("err", e);
       }
@@ -46,10 +41,11 @@ function App() {
     get30DaysCurrencyRate();
   }, []);
 
-  console.log("ratesFor30days", ratesFor30days.length);
+  console.log("ratesFor30days", ratesFor30days);
   return (
     <div className="App">
       <h1>hello</h1>
+      <Chart data={ratesFor30days} />
     </div>
   );
 }
