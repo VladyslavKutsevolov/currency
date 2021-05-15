@@ -12,3 +12,9 @@ export const calculateMedian = (ratesArr) => {
 
   return (rates[middle - 1] + rates[middle]) / 2;
 };
+
+export const getPercentageDiff = (newNum, oldNum) => {
+  if (newNum && oldNum) {
+    return (100 * ((newNum - oldNum) / ((newNum + oldNum) / 2))).toFixed(2);
+  }
+};
