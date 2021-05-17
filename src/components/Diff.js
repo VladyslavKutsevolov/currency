@@ -1,11 +1,11 @@
 import React from "react";
 import { getPercentageDiff } from "../utils/helpers";
 
-const Diff = ({ data, current, previous }) => {
+const Diff = ({ current, previous }) => {
   const diff = getPercentageDiff(current, previous);
 
   return (
-    <p style={{ textAlign: "center" }}>
+    <p style={{ fontSize: "1.2em" }}>
       {diff > 0 ? (
         <i className="fas fa-long-arrow-alt-up" style={{ color: "#009933" }} />
       ) : (
