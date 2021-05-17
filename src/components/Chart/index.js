@@ -15,7 +15,7 @@ import "./chart.css";
 
 const width = 560;
 const height = 300;
-const margin = { top: 20, right: 100, bottom: 65, left: 90 };
+const margin = { top: 20, right: 120, bottom: 65, left: 90 };
 
 const Chart = () => {
   const data = useData();
