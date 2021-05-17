@@ -1,15 +1,19 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { calculateMedian } from "./utils/helpers";
 
-import Chart from "./components/Chart/index";
 import useData from "./components/hooks/useData";
-import Diff from "./components/Diff";
-import BuySell from "./components/BuySell";
+import Intro from "./components/Intro/Intro";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const data = useData();
+  const [showModal, setShowModal] = useState(false);
 
-  const medain = useMemo(() => {
+  const toggleModal = () => {
+    setShowModal((prev) => !prev);
+  };
+
+  const medianRate = useMemo(() => {
     const ratesArr = data.length ? data.map((d) => d.rate) : [];
     return calculateMedian(ratesArr);
   }, [data]);
@@ -27,17 +31,15 @@ function App() {
 
   return (
     <div className="App">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Chart />
-        <Diff data={data} current={currentRate} previous={previousRate} />
-        <BuySell current={currentRate} median={medain} />
-      </div>
+      <Intro showModal={showModal} toggleModal={toggleModal} />
+      <Modal
+        showModal={showModal}
+        toggleModal={toggleModal}
+        data={data}
+        currentRate={currentRate}
+        medianRate={medianRate}
+        previousRate={previousRate}
+      />
     </div>
   );
 }
