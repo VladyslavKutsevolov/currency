@@ -26,17 +26,4 @@ code {
   align-items: center;
 }
 
-.action-btn {
-  margin: 10px;
-  padding: 15px 65px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  border: 1px solid #0099ff;
-  border-radius: 10px;
-  background: #fff;
-  display: block;
-  color: #0099ff;
-  cursor: pointer;
-}
 
