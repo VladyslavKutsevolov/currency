@@ -1,0 +1,68 @@
+@keyframes modal {
+    from {
+        transform: translateY(200%) ;
+    }
+    to {
+        transform: translateY(0) ;
+    }
+}
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    overflow: hidden;
+    transition: 0.64s ease-in-out;
+}
+.modal-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    max-height: 600px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: 1s ease-in-out;
+    animation: .5s alternate ease-in modal;
+
+}
+.modal-graph {
+    flex-basis: 60%;
+}
+
+.modal-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 35%;
+}
+
+.modal-text p {
+    font-size: 0.875rem;
+    color: #686868;
+    line-height: 1.5;
+}
+
+.modal-close {
+    position: absolute;
+    right: -5px;
+    top: 5px;
+    width: 3rem;
+    font-weight: 300;
+    border-radius: 100%;
+    z-index: 3;
+    color: #2e2e31;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.modal-close i {
+    font-size: 1.5rem;
+}
