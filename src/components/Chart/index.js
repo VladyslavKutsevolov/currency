@@ -13,7 +13,7 @@ import { Line } from "./Line";
 
 import "./chart.css";
 
-const width = 560;
+const width = 500;
 const height = 300;
 const margin = { top: 20, right: 120, bottom: 65, left: 90 };
 
@@ -70,7 +70,6 @@ const Chart = () => {
         transform={`translate(${margin.left},${margin.top})`}
         style={{ overflow: "visible" }}
       >
-        <text x={innerWidth / 2 - 100}>Buy or Sell Canadian Dollars</text>
         <Line
           data={data}
           xScale={xScale}
