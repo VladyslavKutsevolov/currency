@@ -18,9 +18,9 @@ const BuySell = ({ medianRate, currentRate }) => {
   return (
     <div>
       {currentRate > medianRate ? (
-        <button style={style}>Buy USD</button>
+        <button style={style}>Sell CAD</button>
       ) : (
-        <button style={style}>Sell USD</button>
+        <button style={style}>Buy USD</button>
       )}
     </div>
   );

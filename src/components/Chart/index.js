@@ -13,9 +13,13 @@ import { Line } from "./Line";
 
 import "./chart.css";
 
-const width = 500;
-const height = 300;
-const margin = { top: 20, right: 120, bottom: 65, left: 90 };
+let width = 500;
+let height = 300;
+const margin = { top: 50, right: 120, bottom: 65, left: 20 };
+
+if (window.innerWidth < 500) {
+  width = window.innerWidth;
+}
 
 const Chart = () => {
   const data = useData();
@@ -37,13 +41,11 @@ const Chart = () => {
 
   const xScale = scaleTime()
     .domain(extent(data, xValue))
-    .range([0, innerWidth])
-    .nice();
+    .range([0, innerWidth]);
 
   const yScale = scaleLinear()
     .domain(extent(data, yValue))
-    .range([innerHeight, 0])
-    .nice();
+    .range([innerHeight, 0]);
 
   const bisectDate = bisector(function (d) {
     return d.date;

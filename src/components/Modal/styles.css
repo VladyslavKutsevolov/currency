@@ -24,6 +24,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     max-width: 800px;
     max-height: 600px;
     background-color: #fff;
@@ -65,4 +66,24 @@
 
 .modal-close i {
     font-size: 1.5rem;
+}
+
+
+@media screen and (max-width: 768px) {
+    .modal-graph {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .modal-text {
+        flex-basis: 100%;
+        padding: 2em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .modal-text {
+        padding: 1em;
+    }
 }
