@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const date = new Date();
 const now = date.toISOString().split("T")[0];
@@ -12,22 +12,28 @@ export const useData = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(url);
-      const { rates } = await res.json();
+      try {
+        const res = await fetch(url);
+        const { rates } = await res.json();
 
-      let rateData = [];
+        let rateData = [];
 
-      for (const key in rates) {
-        const rate = {
-          date: new Date(key),
-          rate: rates[key].USD,
-        };
-        rateData = [...rateData, rate];
+        for (const key in rates) {
+          const rate = {
+            date: new Date(key),
+            rate: rates[key].USD,
+          };
+          rateData = [...rateData, rate];
+        }
+        setData(rateData);
+      } catch (e) {
+        console.error(e);
       }
-      setData(rateData);
     };
 
     getData();
+
+    return () => setData([]);
   }, []);
 
   return data;
