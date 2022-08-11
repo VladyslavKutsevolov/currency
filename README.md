@@ -1,5 +1,7 @@
 # Buy or Sell
 
+https://buyorsell.netlify.app/
+
 This is a small app that fetch data from https://www.frankfurter.app/docs/, get 30 days currency exchange rate for CAD/USD and displays graph using d3.js library and make a suggestion should you buy or sell Canadian Dollars based on median for 30 days.
 
 ## Available Scripts
